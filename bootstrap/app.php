@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Routing\Controllers\Middleware;
+
 /*
 |--------------------------------------------------------------------------
 | Create The Application
