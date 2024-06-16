@@ -13,11 +13,14 @@
         "laravel/tinker": "^2.8"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^3.0",
         "fakerphp/faker": "^1.9.1",
+        "friendsofphp/php-cs-fixer": "^3.59",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
+        "phpstan/phpstan": "^1.11",
         "phpunit/phpunit": "^10.1",
         "spatie/laravel-ignition": "^2.0"
     },
@@ -46,7 +49,11 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "analyse": "phpstan analyse",
+        "clear-analyse-cache": "vendor/bin/phpstan clear-result-cache",
+        "lint": "php-cs-fixer fix --dry-run --diff --config .phpcs.dist",
+        "fix-lint": "php-cs-fixer fix --diff --config .phpcs.dist"
     },
     "extra": {
         "laravel": {
