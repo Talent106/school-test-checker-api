@@ -50,7 +50,7 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "analyse": "phpstan analyse",
+        "analyse": "phpstan analyse app  tests",
         "clear-analyse-cache": "vendor/bin/phpstan clear-result-cache",
         "lint": "php-cs-fixer fix --dry-run --diff --config .phpcs.dist",
         "fix-lint": "php-cs-fixer fix --diff --config .phpcs.dist"
