@@ -6,12 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
-    /**
-     * Handle an authentication attempt.
-     */
-    public function authenticate(Request $request): Response
+    public function login(Request $request): Response
     {
         $credentials = $request->validate([
             'login' => ['required', 'string'],
