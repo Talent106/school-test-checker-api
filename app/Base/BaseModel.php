@@ -24,14 +24,21 @@ class BaseModel extends Model
 
     public static bool $belongsToUser = true;
 
+    public static function boot(): void
+    {
+        parent::boot();
+
+        if (static::$belongsToUser) {
+            static::creating(function ($model): void {
+                if (static::$belongsToUser) {
+                    $model->user_id = User::getAuthenticated()->id;
+                }
+            });
+        }
+    }
+
     public static function booted(): void
     {
-        static::creating(function ($model): void {
-            if (static::$belongsToUser) {
-                $model->update(['user_id' => User::getAuthenticated()->id]);
-            }
-        });
-
         static::addGlobalScope(new BelongsToUserScope());
     }
 }
