@@ -40,6 +40,13 @@ class Course extends BaseModel
         'name',
     ];
 
+    protected $visible = [
+        'user_id',
+        'school_id',
+        'name',
+        'school'
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
