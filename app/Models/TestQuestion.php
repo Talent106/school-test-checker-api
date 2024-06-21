@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Models\Test $test
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TestQuestionOption> $testQuestionOptions
  * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion onlyTrashed()
