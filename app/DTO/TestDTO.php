@@ -18,12 +18,16 @@ class TestDTO extends BaseDTO
 
     public static function createFromCollection(Collection $data): self
     {
+        $questions = is_array($data->get('test_questions'))
+            ? Collection::make($data->get('test_questions'))
+            : $data->get('test_questions');
+
         return new self(
             id: (int) $data->get('id') ?? null,
             course_id: (int) $data->get('course_id'),
             name: (string) $data->get('name'),
             grade: (int) $data->get('grade'),
-            test_questions: TestQuestionDTO::createFromMany($data->get('test_questions')),
+            test_questions: TestQuestionDTO::createFromMany($questions),
         );
     }
 }

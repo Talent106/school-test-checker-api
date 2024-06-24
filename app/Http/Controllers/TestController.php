@@ -20,7 +20,7 @@ class TestController extends Controller
 
     public function show(Request $request, int $id): TestResource
     {
-        $test = TestResource::findOrFail($id);
+        $test = Test::findOrFail($id);
 
         return new TestResource($test);
     }

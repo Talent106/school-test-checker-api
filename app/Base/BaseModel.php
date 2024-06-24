@@ -39,6 +39,8 @@ class BaseModel extends Model
 
     public static function booted(): void
     {
-        static::addGlobalScope(new BelongsToUserScope());
+        if (static::$belongsToUser) {
+            static::addGlobalScope(new BelongsToUserScope());
+        }
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Base\BaseModel;
+use Carbon\Traits\Cast;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -37,6 +39,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Test extends BaseModel
 {
+    use CascadeSoftDeletes;
+
+    protected $cascadeDeletes = ['testQuestions'];
+
     protected $fillable = [
         'name',
         'course_id',

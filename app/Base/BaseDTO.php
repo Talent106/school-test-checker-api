@@ -10,7 +10,9 @@ abstract class BaseDTO
     {
         $datum = is_array($data) ? Collection::make($data) : $data;
 
-        return $data->map(fn ($item) => static::createFromCollection($item));
+        return $datum->map(fn ($item) => static::createFromCollection(
+            is_array($item) ? Collection::make($item) : $item
+        ));
     }
 
     abstract public static function createFromCollection(Collection $data): self;
