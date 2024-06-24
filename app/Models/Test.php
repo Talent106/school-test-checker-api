@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Base\BaseModel;
-use Carbon\Traits\Cast;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;

@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
-use Log;
 
 class CreateAttachmentAction
 {
@@ -27,7 +26,7 @@ class CreateAttachmentAction
                 'original_file_name' => $file->getClientOriginalName(),
                 'original_file_type' => $file->getMimeType(),
                 'original_file_size' => $file->getSize(),
-                'file_path' => 'files/'. User::getAuthenticated()->id . '/' . $file->getClientOriginalName(),
+                'file_path' => 'files/' . User::getAuthenticated()->id . '/' . $file->getClientOriginalName(),
             ]);
 
             Storage::put($attachment->file_path, $file->get());

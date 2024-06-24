@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\CreateAttachmentAction;
 use App\Enum\TestResolutionStatusEnum;
 use App\Http\Resources\TestResolutionResource;
 use App\Jobs\ProcessTestResolutionJob;
 use App\Models\TestResolution;
-use App\Models\TestResolutionQuestion;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Validation\Rules\File;
-use Log;
 
 class TestResolutionController extends Controller
 {

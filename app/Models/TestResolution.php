@@ -47,14 +47,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class TestResolution extends BaseModel
 {
-    use HasAttachments;
     use CascadeSoftDeletes;
-
-    protected $cascadeDeletes = ['testResolutionQuestions'];
+    use HasAttachments;
 
     public $casts = [
         'status' => TestResolutionStatusEnum::class
     ];
+
+    protected $cascadeDeletes = ['testResolutionQuestions'];
 
     protected $fillable = [
         'test_id',
