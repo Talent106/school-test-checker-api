@@ -23,4 +23,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('schools', SchoolController::class);
     Route::apiResource('courses', CourseController::class);
     Route::apiResource('students', StudentController::class);
+    Route::post('attachments/upload', [AttachmentController::class, 'upload']);
+    Route::apiResource('attachments', AttachmentController::class);
 });
