@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\TestResolutionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +26,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('schools', SchoolController::class);
     Route::apiResource('courses', CourseController::class);
     Route::apiResource('students', StudentController::class);
+    Route::apiResource('tests', TestController::class);
+    Route::apiResource('test-resolutions', TestResolutionController::class);
+
     Route::post('attachments/upload', [AttachmentController::class, 'upload']);
     Route::apiResource('attachments', AttachmentController::class);
 });
