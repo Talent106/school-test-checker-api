@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Actions\ProcessResolution\ProcessTestResolutionAction;
 use App\Enum\TestResolutionStatusEnum;
 use App\Models\TestResolution;
 use Illuminate\Bus\Queueable;
@@ -30,7 +31,9 @@ class ProcessTestResolutionJob implements ShouldQueue
     public function handle(): void
     {
         $this->testResolution->update(['status' => TestResolutionStatusEnum::RUNNING]);
-        //TODO: extract and analyse test
+
+        ProcessTestResolutionAction::execute($this->testResolution);
+
         $this->testResolution->update(['status' => TestResolutionStatusEnum::COMPLETED]);
     }
 }
