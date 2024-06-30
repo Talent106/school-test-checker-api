@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $test_resolution_id
  * @property int $test_question_id
  * @property string $answer
+ * @property bool $is_correct
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -40,6 +41,7 @@ class TestResolutionQuestion extends BaseModel
         'test_resolution_id',
         'test_question_id',
         'answer',
+        'is_correct',
     ];
 
     public function testResolution(): BelongsTo

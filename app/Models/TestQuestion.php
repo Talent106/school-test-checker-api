@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use App\Base\BaseModel;
+use Carbon\Carbon;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Collection;
 
 /**
  * App\Models\TestQuestion
@@ -16,26 +20,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $caption
  * @property string $description
  * @property float $grade_credit
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \App\Models\Test $test
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TestQuestionOption> $testQuestionOptions
- * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion query()
- * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion whereCaption($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion whereGradeCredit($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion whereIdentifier($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion whereTestId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion withTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|TestQuestion withoutTrashed()
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property Carbon|null $deleted_at
+ * @property-read Test $test
+ * @property-read TestQuestionOption|null $correctOption
+ * @property-read Collection<int, TestQuestionOption> $testQuestionOptions
  * @mixin \Eloquent
  */
 class TestQuestion extends BaseModel
@@ -57,6 +47,14 @@ class TestQuestion extends BaseModel
     public function test(): BelongsTo
     {
         return $this->belongsTo(Test::class);
+    }
+
+    public function correctOption(): HasOne
+    {
+        return $this->hasOne(TestQuestionOption::class)->ofMany(
+            ['id' => 'max'],
+            fn (Builder $query) => $query->where('is_correct', true)
+        );
     }
 
     public function testQuestionOptions(): HasMany
