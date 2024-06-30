@@ -35,8 +35,8 @@ class ProcessTestResolutionAction
                 'test_question_id' => $testQuestion->id,
                 'answer' => $checkedOption?->identifier,
                 'is_correct' => $checkedOption?->is_correct ?? false,
+                'extracted_text' => $extractedQuestion ?: null,
             ]);
-
             $extractedQuestions = $extractedQuestions->reject(fn (string $question) => $question === $extractedQuestion);
         }
 

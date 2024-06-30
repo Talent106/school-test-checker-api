@@ -19,6 +19,9 @@ class TestResolutionQuestionResource extends JsonResource
             'test_resolution_id' => $this->test_resolution_id,
             'test_question_id' => $this->test_question_id,
             'answer' => $this->answer,
+            'is_correct' => $this->is_correct,
+            'extracted_text' => $this->extracted_text,
+            'testQuestion' => TestQuestionResource::make($this->testQuestion),
         ];
     }
 }
