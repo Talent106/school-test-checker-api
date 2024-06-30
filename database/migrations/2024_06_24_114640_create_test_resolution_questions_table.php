@@ -14,7 +14,8 @@ return new class() extends Migration {
             $table->id();
             $table->foreignId('test_resolution_id')->constrained();
             $table->foreignId('test_question_id')->constrained();
-            $table->string('answer')->nullable();
+            $table->string('answer', 5)->nullable();
+            $table->boolean('is_correct')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
